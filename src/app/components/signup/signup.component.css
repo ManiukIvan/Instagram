@@ -1,0 +1,60 @@
+h1{
+  text-align:center;
+}
+form{
+  border-color: lightgrey;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 8px;
+  background-color: white;
+  max-width: 30%;
+  margin: 0 auto;
+}
+div{
+  text-align:center;
+}
+input[type=text], input[type=password]{
+  width: 100%;
+  padding: 12px 20px;
+  margin:auto;
+  text-align:center;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.input-text{
+  width: 100%;
+  padding: 12px 20px;
+  margin-left:-6%;
+  text-align:center;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+button{
+  color: white;
+  background-color: #958cfa;
+  border: none;
+  width: 100%;
+  padding: 14px 20px;
+  cursor: pointer;
+}
+button[disabled=disabled], button:disabled {
+  color: white;
+  background-color: rgba(149, 140, 250, 0.51);
+  border: none;
+  width: 100%;
+  padding: 14px 20px;
+  cursor: pointer;
+}
+
+mat-label{
+  color: #958cfa;
+  border-color: #958cfa;
+}
+.mat-label-password{
+  margin-left: 6%;
+  color: #958cfa;
+  border-color: #958cfa;
+}
+

@@ -1,0 +1,39 @@
+
+<h1>Instagram</h1>
+
+<form [formGroup]="loginForm">
+  <div>
+    <mat-form-field >
+      <mat-label>Nickname</mat-label>
+      <input class="input-text" matInput formControlName="nickname"/>
+      <div *ngIf="login.nickname.touched && login.nickname.errors" class="invalid-feedback">
+        <div style="color: red" *ngIf="login.nickname.errors.required">Nickname is required</div>
+        <div style="color: red" *ngIf="login.nickname.errors.maxlength">Nickname must not be longer than 25 characters</div>
+      </div>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field >
+      <mat-label class="mat-label-password">Password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'password text'"  formControlName="password">
+        <mat-icon  matSuffix (click)="changeHideValue()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <div *ngIf="login.password.touched && login.password.errors">
+        <div style="color: red" *ngIf="login.password.errors.required">Password is required</div>
+        <div style="color: red" *ngIf="login.password.errors.maxlength">Password must not be longer than 25 characters</div>
+        <div style="color: red" *ngIf="login.password.errors.minlength">Password must be at least 6 characters</div>
+      </div>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button  mat-raised-button color="primary" (click)="save()" [disabled]="!loginForm.valid">Log In</button>
+  </div>
+  <label>
+    <input type="checkbox" checked="false" formControlName="remember" > Remember me
+  </label>
+  <div>
+    <a>Don't have an account? </a>
+    <a routerLink="/signup">Sign up</a>
+  </div>
+</form>
