@@ -15,6 +15,7 @@ import { AppRoutingModule } from './routes/app-routing/app-routing.module';
 import {RouterModule} from '@angular/router';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import { MenuComponent } from './components/menu/menu.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {MatIconModule} from '@angular/material/icon';
     LoginComponent,
     SignupComponent,
     LoginPageComponent,
-    SignupPageComponent
+    SignupPageComponent,
+    MenuComponent
   ],
   imports: [
     MatIconModule,
