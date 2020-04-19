@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   hide: boolean;
   constructor() {
     this.loginForm = new FormGroup({
-      nickname: new FormControl('', [Validators.required, Validators.maxLength(25)]) ,
+      login: new FormControl('', [Validators.required, Validators.email]) ,
       password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(25)]),
       remember: new FormControl(false),
     });

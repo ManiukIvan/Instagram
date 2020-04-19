@@ -4,11 +4,11 @@
 <form [formGroup]="loginForm">
   <div>
     <mat-form-field >
-      <mat-label>Nickname</mat-label>
-      <input class="input-text" matInput formControlName="nickname"/>
-      <div *ngIf="login.nickname.touched && login.nickname.errors" class="invalid-feedback">
-        <div style="color: red" *ngIf="login.nickname.errors.required">Nickname is required</div>
-        <div style="color: red" *ngIf="login.nickname.errors.maxlength">Nickname must not be longer than 25 characters</div>
+      <mat-label>Login</mat-label>
+      <input class="input-text" matInput formControlName="login">
+      <div *ngIf="login.login.touched && login.login.errors" class="invalid-feedback">
+        <div style="color: red" *ngIf="login.login.errors.required">Loogin is required</div>
+        <div style="color: red" *ngIf="login.login.errors.email">Email must be a valid email address</div>
       </div>
     </mat-form-field>
   </div>
@@ -16,7 +16,7 @@
   <div>
     <mat-form-field >
       <mat-label class="mat-label-password">Password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'password text'"  formControlName="password">
+        <input matInput [type]="hide ? 'password' : 'text'"  formControlName="password">
         <mat-icon  matSuffix (click)="changeHideValue()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       <div *ngIf="login.password.touched && login.password.errors">
         <div style="color: red" *ngIf="login.password.errors.required">Password is required</div>
