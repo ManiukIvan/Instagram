@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-menu',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
-  constructor() { }
+  searchControl: FormControl;
+  options: string[];
+  constructor() {
+    this.searchControl = new FormControl('');
+    this.options = ['sas', 'asas' ];
+  }
 
   ngOnInit(): void {
+  }
+  show(): void {
+    console.log(this.searchControl);
   }
 
 }
