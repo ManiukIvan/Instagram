@@ -39,6 +39,7 @@ export class SignupComponent implements OnInit {
 
 }
 
+// return null or set error if passwords don't match
 function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
     const control = formGroup.controls[controlName];

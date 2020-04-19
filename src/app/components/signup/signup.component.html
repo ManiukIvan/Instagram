@@ -3,7 +3,7 @@
 <form [formGroup]="registerForm">
   <div>
     <mat-form-field>
-      <mat-label>Mobile number or email </mat-label>
+      <mat-label>Email</mat-label>
       <input style="margin-left: -6%" type="text" matInput formControlName="login">
       <div *ngIf="registerForm.controls['login'].touched && registerForm.controls['login'].errors">
         <div style="color: red" *ngIf="registerForm.controls['login'].errors.required">Login is required</div>
