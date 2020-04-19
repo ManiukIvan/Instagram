@@ -17,6 +17,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { MenuComponent } from './components/menu/menu.component';
 
+import { UserPageComponent } from './pages/user-page/user-page.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { PostComponent } from './components/post/post.component';
+import { UserComponent } from './components/user/user.component';
+
 
 @NgModule({
   declarations: [
@@ -25,9 +31,14 @@ import { MenuComponent } from './components/menu/menu.component';
     SignupComponent,
     LoginPageComponent,
     SignupPageComponent,
-    MenuComponent
+    MenuComponent,
+    UserPageComponent,
+    PostComponent,
+    UserComponent
   ],
   imports: [
+    MatAutocompleteModule,
+    MatToolbarModule,
     MatIconModule,
     MatInputModule,
     BrowserModule,
