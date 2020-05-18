@@ -11,7 +11,6 @@ import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './routes/app-routing/app-routing.module';
 import {RouterModule} from '@angular/router';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
@@ -22,6 +21,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { PostComponent } from './components/post/post.component';
 import { UserComponent } from './components/user/user.component';
+import { PostPageComponent } from './pages/post-page/post-page.component';
+import {HttpClientModule} from '@angular/common/http';
+import {Routes} from './routes/routes';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -34,7 +37,8 @@ import { UserComponent } from './components/user/user.component';
     MenuComponent,
     UserPageComponent,
     PostComponent,
-    UserComponent
+    UserComponent,
+    PostPageComponent,
   ],
   imports: [
     MatAutocompleteModule,
@@ -45,8 +49,9 @@ import { UserComponent } from './components/user/user.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
-    RouterModule,
-    AppRoutingModule
+    RouterModule.forRoot(Routes),
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
