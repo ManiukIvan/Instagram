@@ -15,11 +15,13 @@ import {log} from 'util';
 export class UserComponent implements OnInit {
   errorMessage: string;
   user: User;
+  postImg: string[];
   constructor(private userService: UserService,
               private localeStorageService: LocalStorageService,
               private imageService: ImageService,
               private route: ActivatedRoute) {
     this.user = null;
+    this.postImg = new Array();
   }
 
   ngOnInit(): void {
@@ -30,6 +32,15 @@ export class UserComponent implements OnInit {
       }, (error1) => {
       this.errorMessage = error1.error.message;
     });
+
+    const respImg = this.imageService.getUserPostImages(userName);
+    resp.subscribe((user: User) => {
+      this.user = user;
+    }, (error1) => {
+      this.errorMessage = error1.error.message;
+    });
+
+
   }
 
   onProfilePhotoChanged(event) {
