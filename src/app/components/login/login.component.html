@@ -3,12 +3,12 @@
 
 <form [formGroup]="loginForm">
   <div>
-    <mat-form-field >
+    <mat-form-field>
       <mat-label>Login</mat-label>
       <input class="input-text" matInput formControlName="login">
-      <div *ngIf="login.login.touched && login.login.errors" class="invalid-feedback">
-        <div style="color: red" *ngIf="login.login.errors.required">Loogin is required</div>
-        <div style="color: red" *ngIf="login.login.errors.email">Email must be a valid email address</div>
+      <div *ngIf="loginForm.controls['login'].touched && loginForm.controls['login'].errors" class="invalid-feedback">
+        <div class="div-error" *ngIf="loginForm.controls['login'].errors.required">Loogin is required</div>
+        <div class="div-error" *ngIf="loginForm.controls['login'].errors.email">Email must be a valid email address</div>
       </div>
     </mat-form-field>
   </div>
@@ -18,20 +18,25 @@
       <mat-label class="mat-label-password">Password</mat-label>
         <input matInput [type]="hide ? 'password' : 'text'"  formControlName="password">
         <mat-icon  matSuffix (click)="changeHideValue()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      <div *ngIf="login.password.touched && login.password.errors">
-        <div style="color: red" *ngIf="login.password.errors.required">Password is required</div>
-        <div style="color: red" *ngIf="login.password.errors.maxlength">Password must not be longer than 25 characters</div>
-        <div style="color: red" *ngIf="login.password.errors.minlength">Password must be at least 6 characters</div>
+      <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors">
+        <div class="div-error" *ngIf="loginForm.controls['password'].errors.required">Password is required</div>
+        <div class="div-error" *ngIf="loginForm.controls['password'].errors.maxlength">Password must not be longer than 25 characters</div>
+        <div class="div-error" *ngIf="loginForm.controls['password'].errors.minlength">Password must be at least 6 characters</div>
       </div>
     </mat-form-field>
   </div>
 
   <div>
-    <button  mat-raised-button color="primary" (click)="save()" [disabled]="!loginForm.valid">Log In</button>
+    <button  mat-raised-button color="primary" (click)="loginNow()" [disabled]="!loginForm.valid">Log In</button>
   </div>
   <label>
     <input type="checkbox" checked="false" formControlName="remember" > Remember me
   </label>
+
+  <div>
+    <a>{{message}}</a>
+  </div>
+
   <div>
     <a>Don't have an account? </a>
     <a routerLink="/signup">Sign up</a>
