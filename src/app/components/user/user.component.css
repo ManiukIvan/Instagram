@@ -1,7 +1,10 @@
 table {
+  margin:0;
+  padding:0;
   width:100%;
   border-collapse:separate;
   border-spacing: 0 1em;
+  background-color: whitesmoke;
 }
 .div-main{
   display: table;
@@ -41,6 +44,16 @@ img {
   width: 150px;
   margin: 0 auto;
 }
+.input-file-upload{
+  display: none;
+}
 .tr-text{
   border: 20px;
 }
+
+
+.td-user-info{
+  text-align: left;
+  min-width: 600px;
+}
+

@@ -1,22 +1,35 @@
-<table>
+<div>
+  {{errorMessage}}
+</div>
+
+<table *ngIf="user">
   <tr>
     <td colspan="3" align="right">
-      <div  class="image-cropper-left">
-        <img class="img" src="assets/images/gulf.png">
-      </div>
+        <div class="image-cropper-left" >
+          <input
+            [disabled]="isUserOwnComponent() ? false : true"
+            class="input-file-upload"
+            accept="image/png, image/jpeg"
+            type="file" (change)="onProfilePhotoChanged($event)"
+            #fileInput>
+          <img [alt]="isUserOwnComponent() ? 'Change profile image' : ''"
+               [title]="isUserOwnComponent() ? 'Change profile image' : ''"
+               src={{user.avatarImageURL}}
+               (click)="fileInput.click()">
+        </div>
     </td>
 
-    <td style="text-align: left">
-      <tr style="padding: 100px">
-        <span class="div-username">{{user.username}}</span>
+    <td class="td-user-info">
+      <tr>
+        <span class="div-username">{{user?.userName}}</span>
       </tr>
       <tr>
-        <span >{{user.postsAmount}} posts</span>
-        <span>{{user.followersAmount}} followers</span>
-        <span>{{user.postsAmount}} following</span>
+        <span >123 posts</span>
+        <span>13 followers</span>
+        <span>12 following</span>
       </tr>
       <tr class="tr-text">
-        <span><strong>{{user.fullName}}</strong></span>
+        <span><strong>{{user?.fullName}}</strong></span>
       </tr>
     </td>
   </tr>
