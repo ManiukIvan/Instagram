@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {LocalStorageService} from '../../services/local-storage.service';
+import {Router} from '@angular/router';
+import {logging} from 'selenium-webdriver';
+import removeConsoleHandler = logging.removeConsoleHandler;
 
 @Component({
   selector: 'app-menu',
@@ -9,9 +13,12 @@ import {FormControl} from '@angular/forms';
 export class MenuComponent implements OnInit {
   searchControl: FormControl;
   options: string[];
-  constructor() {
+  name: string
+  constructor(private route: Router,
+              private localeStorageService: LocalStorageService) {
     this.searchControl = new FormControl('');
     this.options = ['sas', 'asas' ];
+    this.name = '12345678';
   }
 
   ngOnInit(): void {
@@ -19,5 +26,15 @@ export class MenuComponent implements OnInit {
   show(): void {
     console.log(this.searchControl);
   }
+  public logOut() {
+    this.localeStorageService.removeUser();
+  }
+  public isLogged(): boolean {
+    return this.localeStorageService.isLogged();
+  }
 
+
+  public getLoggedUserName() {
+    return this.localeStorageService.getUserName();
+  }
 }

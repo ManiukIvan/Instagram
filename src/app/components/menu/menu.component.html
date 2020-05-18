@@ -4,12 +4,12 @@
   <span></span>
 
   <mat-form-field>
-    <mat-label >Search</mat-label>
+    <mat-label>Search</mat-label>
     <input type="text"
              matInput
              [formControl]="searchControl"
              [matAutocomplete]="auto">
-    <mat-icon>search</mat-icon>
+    <mat-icon class="search-mat-icon">search</mat-icon>
   </mat-form-field>
 
   <mat-autocomplete #auto="matAutocomplete">
@@ -18,13 +18,15 @@
       </mat-option>
   </mat-autocomplete>
 
-  <span></span>
-  <span></span>
 
-  <mat-icon>home</mat-icon>
-  <mat-icon>group</mat-icon>
 
-  <a routerLink='/user'>
-    <mat-icon>person</mat-icon>
-  </a>
+  <div class="buttons-div">
+    <mat-icon class="home-mat-icon">home</mat-icon>
+    <mat-icon class="group-mat-icon">group</mat-icon>
+    <a [routerLink]="['/users',getLoggedUserName()]"  >
+      <mat-icon  class="person-mat-icon">person</mat-icon>
+    </a>
+    <button class="button-logout" *ngIf = "isLogged()" routerLink='/login' (click)="logOut()">Logout</button>
+    <button class="button-login"*ngIf = "!isLogged()" routerLink='/login'>Login</button>
+  </div>
 </mat-toolbar>

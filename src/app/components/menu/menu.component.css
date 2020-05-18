@@ -6,15 +6,19 @@ mat-toolbar{
   position: sticky;
   position: -webkit-sticky; /* For macOS/iOS Safari */
   top: 0; /* Sets the sticky toolbar to be on top */
-  padding: 10px;
+  padding: 0.5%;
   width: 100%;
 }
 span{
   font-family: "Century Gothic";
   font-size: 20px;
   color: black;
-  margin-left: 150px;
-  margin-right: 50px;
+  margin-left: 11%;
+  margin-right: 3%;
+}
+
+mat-form-field{
+  margin-top: 10px;
 }
 input{
   border-color: lightgrey;
@@ -41,8 +45,48 @@ mat-option{
   background-color: white;
   color: black;
 }
-mat-icon{
+
+
+
+
+
+.buttons-div{
+  margin-left: 25%;
+
+}
+
+.search-mat-icon{
+  color: black;
+  position: absolute;
+}
+.home-mat-icon{
+  color: black;
+  margin-left: 30px;
+}
+
+.group-mat-icon{
   color: black;
   margin-left:30px;
-  right:30px;
+}
+.person-mat-icon{
+  color: black;
+  margin-left: 30px;
+  margin-top: 7px;
+}
+
+.button-login{
+  color: white;
+  font-size: smaller;
+  background-color: black;
+  border-style: none;
+  position: absolute;
+  margin-left:30px;
+}
+.button-logout{
+  color: white;
+  font-size: smaller;
+  background-color: black;
+  border-style: none;
+  position: absolute;
+  margin-left:30px;
 }
