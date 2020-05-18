@@ -1,9 +1,11 @@
+import {UserRole} from './user-role';
+
 export class User {
   id: number;
-  username: string;
+  login: string;
+  password: string;
+  userName: string;
   fullName: string;
-  bio: string;
-  postsAmount: number;
-  followersAmount: number;
-  followingAmount: number;
+  userRole: UserRole;
+  avatarImageURL: string;
 }
