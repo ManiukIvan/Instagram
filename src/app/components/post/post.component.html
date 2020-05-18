@@ -1,1 +1,55 @@
-<p>post works!</p>
+<div>
+  {{errorMessage}}
+</div>
+
+
+<div class="tableContainer-1" *ngIf="post">
+  <div class="tableContainer-2">
+    <table class="myTable">
+      <tr>
+        <td class="td-img">
+          <ngb-carousel class="carousel" interval="false">
+            <ng-template ngbSlide *ngFor="let url of images">
+              <div class="picsum-img-wrapper">
+                <img class="post-image"[src]="url" alt="Random first slide">
+              </div>
+            </ng-template>
+          </ngb-carousel>
+        </td>
+
+        <td class="td-info">
+          <div class="div-author">
+            <a routerLink="/users/{{post.ownerUser.userName}}">
+              <img  class="user-image" src={{post.ownerUser.avatarImageURL}}>
+              <label class="label-author-name">{{post.ownerUser.userName}}</label>
+            </a>
+            <button class="button-follow" *ngIf="isLogged()">follow</button>
+          </div>
+          <br>
+          <div class="container1">
+            <div class="container2">
+              <div *ngFor="let comment of comments">
+                <a routerLink="/users/{{comment.ownerUserName}}">
+                  <img class="user-image" src={{comment.ownerImgUrl}}>
+                  <strong class="user-image">{{comment.ownerUserName}}</strong>
+                </a>
+                <div>{{comment.text}}</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button mat-icon-button class="mat-icon-button-like" (click)="liked()">
+              <mat-icon [ngStyle]="{'color':isLiked? 'red' : 'black'}" class="mat-icon-like">{{isLiked? 'favorite' : 'favorite_border'}}</mat-icon>
+            </button>
+            <label class="label-like-amount">{{likes}} likes</label>
+          </div>
+          <div *ngIf="isLogged()">
+            <textarea  placeholder="Add comment..." class="textarea-comment" [formControl]="newComment" [disabled]=""></textarea>
+            <button class="button-post-comment" (click)="addComment()" [disabled]="!newComment.valid">Post</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
