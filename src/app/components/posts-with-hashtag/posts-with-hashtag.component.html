@@ -1,0 +1,33 @@
+<div class="scroll-container">
+  <div class="indent"></div>
+  <div>
+    {{errorMessage}}
+  </div>
+  <div  *ngIf="!errorMessage"></div>
+  <div class="center" *ngFor="let postImg of postsImg; let i = index" >
+    <div  *ngIf="i % 3 == 0" class="row">
+      <div class="img-div">
+        <a routerLink="/posts/{{postImg.key}}">
+          <img  src="{{postImg.value}}">
+        </a>
+      </div>
+
+      <div class="img-div" *ngIf="i + 1 < postsImg.length">
+        <a routerLink="/posts/{{postsImg[i+1].key}}">
+          <img src="{{postsImg[i+1].value}}">
+        </a>
+      </div>
+
+      <div class="img-div" *ngIf="i + 2 < postsImg.length">
+        <a routerLink="/posts/{{postsImg[i+2].key}}">
+          <img src="{{postsImg[i+2].value}}">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
