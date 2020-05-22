@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
@@ -22,9 +22,17 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { PostComponent } from './components/post/post.component';
 import { UserComponent } from './components/user/user.component';
 import { PostPageComponent } from './pages/post-page/post-page.component';
+import {PostsAllPageComponent} from './pages/posts-all-page/posts-all-page.component';
 import {HttpClientModule} from '@angular/common/http';
 import {Routes} from './routes/routes';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NewPostDialogComponent } from './components/new-post-dialog/new-post-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {PostsAllComponent} from './components/posts-all/posts-all.component';
+import { PostsWithHashtagComponent } from './components/posts-with-hashtag/posts-with-hashtag.component';
+import { PostsWithHashtagPageComponent } from './pages/posts-with-hashtag-page/posts-with-hashtag-page.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {NgxSpinnerModule, NgxSpinnerService} from 'ngx-spinner';
 
 
 @NgModule({
@@ -39,6 +47,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PostComponent,
     UserComponent,
     PostPageComponent,
+    NewPostDialogComponent,
+    PostsAllComponent,
+    PostsAllPageComponent,
+    PostsWithHashtagComponent,
+    PostsWithHashtagPageComponent,
   ],
   imports: [
     MatAutocompleteModule,
@@ -51,8 +64,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     RouterModule.forRoot(Routes),
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    MatDialogModule,
+    InfiniteScrollModule,
+    NgxSpinnerModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })
