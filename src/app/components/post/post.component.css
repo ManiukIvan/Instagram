@@ -43,6 +43,34 @@
   width: auto;
 }
 
+.div-author{
+  position: absolute;
+  margin-top: -70px;
+  text-align: start;
+  color: black;
+}
+
+.label-author-name{
+  font-size: 20px;
+  width: 150px;
+  position: absolute;
+  margin: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.label-post-date{
+  position: absolute;
+  margin-left: 170px;
+  margin-top: 10px;
+  width: 80px;
+  background: white;
+  font-style: italic;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
 .user-image{
   margin: 5px;
   height: 30px;
@@ -51,35 +79,24 @@
   border-radius: 50%;
 }
 
-
-.div-author{
-  position: absolute;
-  margin-top: -70px;
-  text-align: start;
-  color: black;
-  font-size: 20px;
-}
-.button-follow{
-  position: absolute;
-  margin-left: 170px;
-  margin-top: 10px;
-  border: none;
-  background: white;
-  color: #0095f6;
-  font-style: italic;
-}
-.label-author-name{
-  width: 150px;
-  position: absolute;
-  margin: 10px;
+.label-commentator-name{
+  margin-left: 5px;
+  width: 100px;
   overflow: hidden;
   white-space: nowrap;
 }
-
-
-.label-user-name{
-  text-decoration-style: inherit;
+.div-comment{
+  margin-top: -15px;
+  margin-left: 45px;
 }
+.label-comment-date{
+  width: 80px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: smaller;
+  margin-left: 45px;
+}
+
 
 .mat-icon-button-like{
   border: none;

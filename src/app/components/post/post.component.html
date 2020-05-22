@@ -2,8 +2,7 @@
   {{errorMessage}}
 </div>
 
-
-<div class="tableContainer-1" *ngIf="post">
+<div class="tableContainer-1" *ngIf="!errorMessage">
   <div class="tableContainer-2">
     <table class="myTable">
       <tr>
@@ -23,7 +22,8 @@
               <img  class="user-image" src={{post.ownerUser.avatarImageURL}}>
               <label class="label-author-name">{{post.ownerUser.userName}}</label>
             </a>
-            <button class="button-follow" *ngIf="isLogged()">follow</button>
+            <label class="label-post-date">{{post.date}}</label>
+            <!--<button class="button-follow" *ngIf="isLogged()">follow</button>-->
           </div>
           <br>
           <div class="container1">
@@ -31,9 +31,12 @@
               <div *ngFor="let comment of comments">
                 <a routerLink="/users/{{comment.ownerUserName}}">
                   <img class="user-image" src={{comment.ownerImgUrl}}>
-                  <strong class="user-image">{{comment.ownerUserName}}</strong>
                 </a>
-                <div>{{comment.text}}</div>
+                <a class="label-commentator-name" routerLink="/users/{{comment.ownerUserName}}">
+                  <strong >{{comment.ownerUserName}}</strong>
+                </a>
+                <div class="div-comment" [innerHTML]="comment.text"></div>
+                <label class="label-comment-date">{{comment.date}}</label>
               </div>
             </div>
           </div>
@@ -44,7 +47,7 @@
             <label class="label-like-amount">{{likes}} likes</label>
           </div>
           <div *ngIf="isLogged()">
-            <textarea  placeholder="Add comment..." class="textarea-comment" [formControl]="newComment" [disabled]=""></textarea>
+            <textarea  placeholder="Add comment..." class="textarea-comment" [formControl]="newComment"></textarea>
             <button class="button-post-comment" (click)="addComment()" [disabled]="!newComment.valid">Post</button>
           </div>
         </td>

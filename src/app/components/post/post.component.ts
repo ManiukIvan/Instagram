@@ -9,6 +9,7 @@ import {CommentService} from '../../services/comment.service';
 import {LikeService} from '../../services/like.service';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {Like} from '../../model/like';
+import {_isNumberValue} from '@angular/cdk/coercion';
 
 @Component({
   selector: 'app-post',
@@ -23,6 +24,7 @@ export class PostComponent implements OnInit {
   images: string[];
   comments: Comment[];
   likes: number;
+  hrev: string;
   constructor(private route: ActivatedRoute,
               private localeStorageService: LocalStorageService,
               private postService: PostService,
@@ -36,53 +38,60 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     // getting post by id
     const postId = this.route.snapshot.paramMap.get('postId');
-    const respPost = this.postService.getPost(postId);
-    respPost.subscribe((post: Post) => {
-      this.post = post;
-      const descriptionComment = new Comment();
-      descriptionComment.postId = post.id;
-      descriptionComment.text = post.description;
-      descriptionComment.date = post.date;
-      descriptionComment.ownerUserName = post.ownerUser.userName;
-      descriptionComment.ownerImgUrl = post.ownerUser.avatarImageURL;
-      this.comments.push(descriptionComment);
-    }, (error1) => {
-      this.errorMessage = error1.error.message;
-    });
-    const respImg = this.imageService.getPostImages(postId);
-    respImg.subscribe((images: string[]) => {
-      this.images = images;
-    }, (error1) => {
-      this.errorMessage = error1.error.message;
-    });
+    if (_isNumberValue(postId)) {
+      const respPost = this.postService.getPost(postId);
+      respPost.subscribe((post: Post) => {
+        this.post = post;
+        const descriptionComment = new Comment();
+        descriptionComment.postId = post.id;
+        descriptionComment.text = post.description;
+        descriptionComment.date = post.date;
+        descriptionComment.ownerUserName = post.ownerUser.userName;
+        descriptionComment.ownerImgUrl = post.ownerUser.avatarImageURL;
+        // unshift will add post description in start of array
+        this.comments.unshift(descriptionComment);
 
-    const respComments = this.commentService.getComments(postId);
-    respComments.subscribe((comments: Comment[]) => {
-      this.comments = this.comments.concat(comments);
-    }, (error1) => {
-      this.errorMessage = error1.error.message;
-    });
-
-    const respLikes = this.likeService.getLikes(postId);
-    respLikes.subscribe((likes: number) => {
-      this.likes = likes;
-    }, (error1) => {
-      this.errorMessage = error1.error.message;
-    });
-
-    if (this.localeStorageService.isLogged()) {
-      const respLike = this.likeService.getLike(postId, this.localeStorageService.getUserId());
-      respLike.subscribe((like: Like) => {
-        if (like !== null) {
-          this.isLiked = true;
-        } else {
-          this.isLiked = false;
-        }
+        const respImg = this.imageService.getPostImages(this.post.ownerUser.id, postId);
+        respImg.subscribe((images: string[]) => {
+          this.images = images;
+        }, (error1) => {
+          console.log(error1.error.message);
+        });
       }, (error1) => {
-        this.errorMessage = error1.error.message;
+        console.log(error1.error.message);
+        this.errorMessage = 'Can\'t find such post';
       });
-    }
 
+      const respComments = this.commentService.getComments(postId);
+      respComments.subscribe((comments: Comment[]) => {
+        this.comments = this.comments.concat(comments);
+      }, (error1) => {
+        console.log(error1.error.message);
+      });
+
+      const respLikes = this.likeService.getLikes(postId);
+      respLikes.subscribe((likes: number) => {
+        this.likes = likes;
+      }, (error1) => {
+        console.log(error1.error.message);
+      });
+
+      if (this.localeStorageService.isLogged()) {
+        const respLike = this.likeService.getLike(postId, this.localeStorageService.getUserId());
+        respLike.subscribe((like: Like) => {
+          if (like !== null) {
+            this.isLiked = true;
+          } else {
+            this.isLiked = false;
+          }
+        }, (error1) => {
+          console.log(error1.error.message);
+        });
+      }
+
+    } else {
+      this.errorMessage = 'Post id is number value, ' + postId + ' isn\'t';
+    }
   }
 
 
@@ -99,7 +108,7 @@ export class PostComponent implements OnInit {
           this.likes = likesAmount;
         }, (error1) => {
           this.isLiked = !this.isLiked;
-          this.errorMessage = error1.error.message;
+          console.log(error1.error.message);
         });
       } else {
         const respLike = this.likeService.unsetLike(this.post.id, this.localeStorageService.getUserId());
@@ -107,7 +116,7 @@ export class PostComponent implements OnInit {
           this.likes = likesAmount;
         }, (error1) => {
           this.isLiked = !this.isLiked;
-          this.errorMessage = error1.error.message;
+          console.log(error1.error.message);
         });
       }
     }
@@ -126,7 +135,7 @@ export class PostComponent implements OnInit {
         this.comments.push(comment);
         this.newComment.setValue('');
       }, (error1) => {
-        this.errorMessage = error1.error.message;
+        console.log(error1.error.message);
       });
     }
 
@@ -135,5 +144,4 @@ export class PostComponent implements OnInit {
   isLogged(): boolean {
     return this.localeStorageService.isLogged();
   }
-
 }

@@ -1,32 +1,38 @@
+
 <mat-toolbar>
-  <span>Instagram</span>
+    <span>Instagram</span>
 
-  <span></span>
+    <span></span>
 
-  <mat-form-field>
-    <mat-label>Search</mat-label>
-    <input type="text"
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input type="text"
              matInput
              [formControl]="searchControl"
              [matAutocomplete]="auto">
-    <mat-icon class="search-mat-icon">search</mat-icon>
-  </mat-form-field>
+      <mat-icon class="search-mat-icon">search</mat-icon>
+    </mat-form-field>
 
-  <mat-autocomplete #auto="matAutocomplete">
+    <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let option of options" [value]="option">
         {{option}}
       </mat-option>
-  </mat-autocomplete>
+    </mat-autocomplete>
 
 
 
-  <div class="buttons-div">
-    <mat-icon class="home-mat-icon">home</mat-icon>
-    <mat-icon class="group-mat-icon">group</mat-icon>
-    <a [routerLink]="['/users',getLoggedUserName()]"  >
-      <mat-icon  class="person-mat-icon">person</mat-icon>
-    </a>
-    <button class="button-logout" *ngIf = "isLogged()" routerLink='/login' (click)="logOut()">Logout</button>
-    <button class="button-login"*ngIf = "!isLogged()" routerLink='/login'>Login</button>
-  </div>
-</mat-toolbar>
+    <div class="buttons-div">
+      <mat-icon class="home-mat-icon">home</mat-icon>
+      <mat-icon class="group-mat-icon">group</mat-icon>
+      <button class="button-person" routerLink="/posts/all">
+        <mat-icon class="photo-library-mat-icon">photo_library</mat-icon>
+      </button>
+      <button class="button-person" routerLink="/users/{{getLoggedUserName()}}" [disabled]="!isLogged()">
+        <mat-icon  class="person-mat-icon">person</mat-icon>
+      </button>
+      <button class="button-logout" *ngIf = "isLogged()" routerLink='/login' (click)="logOut()">Logout</button>
+      <button class="button-login"*ngIf = "!isLogged()" routerLink='/login'>Login</button>
+    </div>
+  </mat-toolbar>
+
+

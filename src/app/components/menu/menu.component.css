@@ -3,9 +3,7 @@ mat-toolbar{
   border-bottom-color: lightgrey;
   border-bottom-style: solid;
   background-color: white;
-  position: sticky;
-  position: -webkit-sticky; /* For macOS/iOS Safari */
-  top: 0; /* Sets the sticky toolbar to be on top */
+  position: absolute;
   padding: 0.5%;
   width: 100%;
 }
@@ -55,6 +53,7 @@ mat-option{
 
 }
 
+
 .search-mat-icon{
   color: black;
   position: absolute;
@@ -68,10 +67,31 @@ mat-option{
   color: black;
   margin-left:30px;
 }
-.person-mat-icon{
+
+.button-photo-library{
+  border: none;
+  background: white;
+  margin-left: 30px;
+}
+.button-photo-library:focus{
+  outline: 0;
+}
+.photo-library-mat-icon{
   color: black;
+}
+
+.button-person{
+  border: none;
+  background: white;
   margin-left: 30px;
   margin-top: 7px;
+}
+.button-person:focus{
+  outline: 0;
+}
+
+.person-mat-icon{
+  color: black;
 }
 
 .button-login{
@@ -90,3 +110,4 @@ mat-option{
   position: absolute;
   margin-left:30px;
 }
+
