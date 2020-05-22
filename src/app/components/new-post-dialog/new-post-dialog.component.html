@@ -1,0 +1,25 @@
+<h2 mat-dialog-title bac>New Post</h2>
+
+<mat-dialog-content>
+  <div>
+    Post description
+  </div>
+  <textarea placeholder="Add post description..." class="post-description" [formControl]="postDescription"></textarea>
+  <input
+    accept="image/png, image/jpeg"
+    type="file" multiple
+    [hidden]="true"
+    (change)="onImagesChanged($event)"
+    #fileInput>
+  <button class="select-images-button"(click)="fileInput.click()">
+    Select Images
+  </button>
+  <label class="message-span">{{message}}</label>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onPost()" [disabled]="!postDescription.valid || (selectedFiles.length==0)">Post</button>
+</mat-dialog-actions>
+
+
